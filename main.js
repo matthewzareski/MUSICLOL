@@ -4,6 +4,10 @@ leftWristX = 0;
 leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0;
+scoreLeftWrist = 0;
+status1 = "";
+
+
  function preload(){
      song1 = loadSound("Letgo.mp3");
      song2 = loadSound("river.mp3");
@@ -21,19 +25,19 @@ rightWristY = 0;
 
  function draw(){
      image(video, 0, 0, 600, 500);
-
-     fill("FF0000");
-     stroke("FF0000");
+    status1 = song1.isPlaying();
+     fill("#FF0000");
+     stroke("#FF0000");
 
     if(scoreLeftWrist > 0.2)
     {
 
      circle(leftWristX, leftWristY,20);
-     InNumberleftWristY = Number(leftWristY);
-     remove_decimals = floor(InNumberleftWristY);
-     volume = remove_decimals/500;
-     document.getElementById("volume").inerHTML = "Volume = " + volume;
-    song.setVolume(volume);
+     song2.stop();
+     if(status1 == false){
+         song1.play();
+         document.getElementById("songtitle").innerHTML = "Now playing = Let Go"
+     }
     }
 }
 
@@ -58,14 +62,4 @@ function gotPoses(results){
 }
 
 
- function start(){
-     song1.play();
- }
-
- function stop(){
-    song1.stop();
-}
-
-function pause(){
-    song1.pause();
-}
+ 
